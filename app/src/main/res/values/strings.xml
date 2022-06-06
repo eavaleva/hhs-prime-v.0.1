@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">HHS_prime</string>
+
+    <!--TextView -->
+    <string name="add_character_tv_id">Add Character</string>
+    <string name="add_show_tv_id">Add Show</string>
+    <string name="overview_tv_id">Overview</string>
+
+    <string name="add_show_date_tv_id">Date:</string>
+    <string name="overview_show_tv_id">Show</string>
+    <string name="overview_character_tv_id">Character</string>
+    <string name="show_seasons_tv_id">Amount of Seasons:</string>
+    <string name="name_tv_id">Name:</string>
+    <string name="show_characters_tv_id">Main Character:</string>
+
+
+    <!--Edit text -->
+    <string name="show_name_et_id">Entourage</string>
+    <string name="show_characters_et_id">Jane Doe</string>
+
+
+    <!--Buttons -->
+    <string name="name_btn_id">Name:</string>
+    <string name="save_btn_id">Save</string>
+    <string name="cancel_btn_id">Cancel</string>
+    <string name="show_btn_id">Show</string>
+    <string name="character_btn_id">Character</string>
+
+
+    <!--Spinner -->
+    <string name="show_character_sp_id">show_character_sp_id</string>
+
+    <!--Other -->
+    <string name="jane_doe">Jane Doe</string>
+    <string name="date">15–06–2020</string>
+    <string name="_8">8</string>
+
+    <string name="succes">Added</string>
+    <string name="invalid">Invalid input</string>
+    <string name="my_favorite_show">My Favorite Show</string>
+
+
+</resources>

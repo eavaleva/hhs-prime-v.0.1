@@ -35,62 +35,11 @@ public class Show implements Serializable {
 
     private Integer characterId;
 
-
     @Ignore
     private Character mainCharacter;
 
-    @Ignore
-    private static ArrayList<Show> shows = new ArrayList<Show>() {{
-        add(new Show("Breaking Bad", 5, new Character("Mr. White")));
-        add(new Show("Test movie", 8, new Character("Jane Doe")));
-        add(new Show("Breaking Bad", 5, new Character("Mr. White")));
-        add(new Show("Test movie", 8, new Character("Jane Doe")));
-        add(new Show("Breaking Bad", 5, new Character("Mr. White")));
-        add(new Show("Test movie", 8, new Character("Jane Doe")));
-        add(new Show("Breaking Bad", 5, new Character("Mr. White")));
-        add(new Show("Test movie", 8, new Character("Jane Doe")));
-        add(new Show("Breaking Bad", 5, new Character("Mr. White")));
-        add(new Show("Test movie", 8, new Character("Jane Doe")));
-        add(new Show("Breaking Bad", 5, new Character("Mr. White")));
-        add(new Show("Test movie", 8, new Character("Jane Doe")));
-        add(new Show("Breaking Bad", 5, new Character("Mr. White")));
-        add(new Show("Test movie", 8, new Character("Jane Doe")));
-        add(new Show("Breaking Bad", 5, new Character("Mr. White")));
-        add(new Show("Test movie", 8, new Character("Jane Doe")));
-        add(new Show("Breaking Bad", 5, new Character("Mr. White")));
-        add(new Show("Test movie", 8, new Character("Jane Doe")));
-        add(new Show("Breaking Bad", 5, new Character("Mr. White")));
-        add(new Show("Test movie", 8, new Character("Jane Doe")));
-
-    }};
-
-
-    public static List<Show> getAll(Context context) {
-        List<Show> shows = AppDatabase.getDatabase(context).showDao().getAll();
-       if (shows!=null){
-            return shows;
-      }
-
-        for(Show show : shows){
-            if(show.characterId != null){
-                show.mainCharacter= AppDatabase.getDatabase(context).characterDao().getById(show.characterId);
-            }
-        }
-        return shows;
-    }
-
-    public static void add(Show show, Context context) {
-        AppDatabase.getDatabase(context).showDao().insert(show);
-    }
-
-    public static void delete(Show show, Context context){
-        AppDatabase.getDatabase(context).showDao().delete(show);
-
-    }
-
 
     public Show() {
-
     }
 
     public Show(String name, Integer seasons) {
@@ -105,6 +54,29 @@ public class Show implements Serializable {
         this.mainCharacter = mainCharacter;
 
     }
+
+    public static List<Show> getAll(Context context) {
+        List<Show> shows = AppDatabase.getDatabase(context).showDao().getAll();
+
+        for (Show show : shows) {
+            Integer characterId = show.getCharacterId();
+            System.out.println(characterId);
+            if (characterId != null) {
+                show.setMainCharacter(AppDatabase.getDatabase(context).characterDao().getById(characterId));
+            }
+        }
+        return shows;
+    }
+
+    public static void add(Show show, Context context) {
+        AppDatabase.getDatabase(context).showDao().insert(show);
+    }
+
+//    public static void delete(Show show, Context context){
+//        AppDatabase.getDatabase(context).showDao().delete(show);
+//
+//    }
+
 
     @Override
     public String toString() {
@@ -153,6 +125,7 @@ public class Show implements Serializable {
     }
 
     public void setMainCharacter(Character mainCharacter) {
+        System.out.println(mainCharacter.getName());
         this.mainCharacter = mainCharacter;
     }
 }

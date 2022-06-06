@@ -4,7 +4,10 @@ import com.example.hhs_prime_v01.models.Character;
 import com.example.hhs_prime_v01.models.Show;
 
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -40,16 +43,26 @@ public class AddCharacterActivity extends AppCompatActivity {
         Button save = findViewById(R.id.save_character_btn_id);
         Button cancel = findViewById(R.id.cancel_character_btn_id);
 
-        Intent intent = getIntent();
-        Character character = (Character) intent.getSerializableExtra("CHARACTER");
-
-        if (character != null) {
-            EditText nameET = findViewById(R.id.add_character_name_et_id);
-            //nameET.setText(Character.getName(this));
-        }
+//        Intent intent = getIntent();
+//        Character character = (Character) intent.getSerializableExtra("CHARACTER");
+//
+//        if (character != null) {
+//           // EditText nameET = findViewById(R.id.add_character_name_et_id);
+//           // nameET.setText(Character.getName(this));
+//        }
 
         save.setOnClickListener(this::save);
         cancel.setOnClickListener(this::cancel);
+
+        launcher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        System.out.println("The AddCharacter activity is done");
+                        System.out.println(result.getData().getStringExtra("MESSAGE"));
+                    }
+                });
     }
 
     public void save(View view) {
@@ -67,12 +80,12 @@ public class AddCharacterActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            Character character = new Character(name, date);
+            Character.add(character, this);
+            //Character.add(character);
+
             Intent intent = new Intent(this, OverviewActivity.class);
             launcher.launch(intent);
-
-            Character character = new Character(name, date);
-           // Character.add(character, this);
-            Character.add(character);
 
             finish();
 

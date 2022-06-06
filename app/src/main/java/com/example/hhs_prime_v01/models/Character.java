@@ -27,6 +27,7 @@ public class Character implements Serializable {
     @Ignore
     private  ArrayList<Show> shows = new ArrayList<>();
 
+    @Ignore
     private static ArrayList <Character> characters = new ArrayList<Character>(){{
         add(new Character("Ekaterini Snow"));
         add(new Character("Bass Doe"));
@@ -35,25 +36,25 @@ public class Character implements Serializable {
 
     }};
 
-//    public static List<Character> getAll(Context context){
-//        return AppDatabase.getDatabase(context).characterDao().getAll();
-//    }
-//
-//    public static void add(Character character, Context context){
-//        AppDatabase.getDatabase(context).characterDao().insert(character);
-//
-//    }
-
-    public static List<Character> getAll(){
-        return characters;
+    public static List<Character> getAll(Context context){
+        return AppDatabase.getDatabase(context).characterDao().getAll();
     }
 
-    public static void add(Character character){
-        //if(character!=null){
-            characters.add(character);
-        //}
+    public static void add(Character character, Context context){
+        AppDatabase.getDatabase(context).characterDao().insert(character);
 
     }
+
+//    public static List<Character> getAll(){
+//        return characters;
+//    }
+//
+//    public static void add(Character character){
+//        //if(character!=null){
+//            characters.add(character);
+//        //}
+//
+//    }
 
 
     public Character(){
@@ -83,7 +84,7 @@ public class Character implements Serializable {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {

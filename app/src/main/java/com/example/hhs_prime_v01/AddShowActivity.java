@@ -46,8 +46,8 @@ public class AddShowActivity extends AppCompatActivity {
         ArrayAdapter<Character> adapter = new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_spinner_dropdown_item,
-                //Character.getAll(this));
-                Character.getAll());
+                Character.getAll(this));
+                //Character.getAll());
         spinner.setAdapter(adapter);
     }
 
@@ -62,13 +62,15 @@ public class AddShowActivity extends AppCompatActivity {
             String nameString = nameET.getText().toString();
             String seasonsString = seasonsET.getText().toString();
 
+
+
             if (Validator.isNumeric(seasonsString)) {
                 int seasonsInt = Integer.parseInt(seasonsString); /** This is a int not an Integer  */
                 Show show = new Show(nameString, seasonsInt); //TODO add character
 
                 // using the selected item from the spinner
-
-               show.setMainCharacter((Character) spinner.getSelectedItem());
+                Character character = (Character) spinner.getSelectedItem();
+               show.setCharacterId(character.getId());
 
 
                 Show.add(show, this);

@@ -15,7 +15,10 @@ public class Validator {
     }
 
     // TODO: uitwerken numeric validator
-    public static boolean isNumeric(String seasonsString) {
+    public static boolean isNumeric(String userInput) {
+        if (userInput == null || userInput.isEmpty()) {
+            return false;
+        }
         return true;
     }
 }

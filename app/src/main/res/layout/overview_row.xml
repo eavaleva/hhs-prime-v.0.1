@@ -9,10 +9,9 @@
 
     <TextView
         android:id="@+id/overview_row_show_tf_id"
-        android:layout_width="226dp"
+        android:layout_width="107dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/overview_row_character_tf_id"
